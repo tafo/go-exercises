@@ -24,10 +24,10 @@ func main() {
 	csvLines, _ := csv.NewReader(csvFile).ReadAll()
 	problems := parseLines(csvLines)
 	timer := time.NewTimer(time.Duration(*timeLimit) * time.Second)
+	answerCh := make(chan string)
 	problemLoop:
 	for _, problem := range problems {
 		fmt.Printf("%s = ", problem.question)
-		answerCh := make(chan string)
 		go func() {
 			var answer string
 			fmt.Scanf("%s\n", &answer)
