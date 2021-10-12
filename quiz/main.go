@@ -15,7 +15,12 @@ func main() {
 		return
 	}
 	fmt.Println("Please try to guess the following questions")
-	defer csvFile.Close()
+	defer func(csvFile *os.File) {
+		err := csvFile.Close()
+		if err != nil {
+
+		}
+	}(csvFile)
 	var correct, incorrect int32 = 0, 0
 	csvLines, err := csv.NewReader(csvFile).ReadAll()
 	for _, line := range csvLines {
@@ -29,6 +34,5 @@ func main() {
 			correct++
 		}
 	}
-	message := fmt.Sprintf("Correct Answers : %d, Incorrect answers : %d", correct, incorrect)
-	fmt.Println(message)
+	fmt.Printf("Correct Answers : %d, Incorrect answers : %d", correct, incorrect)
 }

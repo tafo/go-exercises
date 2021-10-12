@@ -26,7 +26,7 @@ func main() {
 		panic(err)
 	}
 	fmt.Println("Starting the server on :8080")
-	http.ListenAndServe(":8080", yamlHandler)
+	_ = http.ListenAndServe(":8080", yamlHandler)
 }
 
 func defaultMux() *http.ServeMux {
@@ -35,6 +35,6 @@ func defaultMux() *http.ServeMux {
 	return mux
 }
 
-func hello(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Hello, world!")
+func hello(w http.ResponseWriter, _ *http.Request) {
+	_, _ = fmt.Fprintln(w, "Hello, world!")
 }
