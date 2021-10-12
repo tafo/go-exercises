@@ -16,3 +16,6 @@
 
 # Goland
 .idea
+
+#Project
+*.txt
